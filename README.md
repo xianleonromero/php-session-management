@@ -54,10 +54,12 @@ git clone https://github.com/xianleonromero/php-session-management.git
 
 #### 2. Mover archivos a la carpeta de XAMPP
 
-Copia la carpeta del proyecto a:
+Copia **solo la carpeta `php-session-management/`** (el código fuente) a:
 - **Windows:** `C:\xampp\htdocs\php-session-management\`
 - **Linux:** `/opt/lampp/htdocs/php-session-management/`
 - **Mac:** `/Applications/XAMPP/htdocs/php-session-management/`
+
+> **Nota:** Los archivos `mysitedb.sql` y `README.md` no necesitan copiarse, están en el repositorio para documentación.
 
 #### 3. Iniciar servicios
 
@@ -78,7 +80,7 @@ Abre el **Panel de Control de XAMPP** e inicia:
 1. Selecciona la base de datos `mysitedb`
 2. Haz clic en la pestaña **"Importar"**
 3. Haz clic en **"Seleccionar archivo"**
-4. Selecciona el archivo `mysitedb.sql` (incluido en el proyecto)
+4. Selecciona el archivo `mysitedb.sql` (ubicado en la raíz del repositorio)
 5. Haz clic en **"Continuar"**
 
 #### 6. Acceder a la aplicación
@@ -92,21 +94,22 @@ http://localhost/php-session-management/
 
 ## 📂 Estructura del Proyecto
 ```
-php-session-management/
-├── index.php              # Página de entrada (redirige según sesión)
-├── login.html             # Formulario de inicio de sesión
-├── login.php              # Procesa el login
-├── register.html          # Formulario de registro
-├── register.php           # Procesa el registro
-├── logout.php             # Cierra la sesión
-├── main.php               # Página principal con lista de juegos
-├── detail.php             # Detalle de juego con comentarios
-├── comment.php            # Procesa nuevos comentarios
-├── change_password.html   # Formulario de cambio de contraseña
-├── change_password.php    # Procesa el cambio de contraseña
-├── main-estilos.css       # Estilos y animaciones
-├── mysitedb.sql           # Script SQL de la base de datos
-└── README.md              # Este archivo
+📁 Raíz del repositorio/
+├── 📁 php-session-management/    # Código fuente
+│   ├── index.php                 # Página de entrada (redirige según sesión)
+│   ├── login.html                # Formulario de inicio de sesión
+│   ├── login.php                 # Procesa el login
+│   ├── register.html             # Formulario de registro
+│   ├── register.php              # Procesa el registro
+│   ├── logout.php                # Cierra la sesión
+│   ├── main.php                  # Página principal con lista de juegos
+│   ├── detail.php                # Detalle de juego con comentarios
+│   ├── comment.php               # Procesa nuevos comentarios
+│   ├── change_password.html      # Formulario de cambio de contraseña
+│   ├── change_password.php       # Procesa el cambio de contraseña
+│   └── main-estilos.css          # Estilos y animaciones
+├── mysitedb.sql                  # Script SQL de la base de datos
+└── README.md                     # Documentación del proyecto
 ```
 
 ---
@@ -145,45 +148,40 @@ php-session-management/
 
 ---
 
-## 🎯 Funcionalidades Implementadas
+## 🎯 Funcionalidades Principales
 
-### Ejercicio 2: Registro de Usuarios
-- Formulario con validación de campos
+### Sistema de Autenticación
+- Registro de usuarios con validación de campos
 - Verificación de emails duplicados
 - Cifrado de contraseñas con `password_hash()`
-- Inserción segura en base de datos
+- Login con verificación mediante `password_verify()`
+- Gestión de sesiones PHP
+- Logout con destrucción de sesiones
 
-### Ejercicio 3: Login
-- Validación de credenciales
-- Verificación con `password_verify()`
-- Creación de sesiones PHP
-- Redirección según estado
+### Gestión de Usuarios
+- Página de perfil personalizada
+- Cambio de contraseña seguro
+- Verificación de contraseña actual antes de actualizar
+- Mensajes de bienvenida personalizados
 
-### Ejercicio 4: Comentarios Vinculados
-- Comentarios asociados a usuarios logueados
-- Comentarios anónimos si no hay sesión
-- Visualización con fecha
+### Sistema de Comentarios
+- Comentarios vinculados a usuarios registrados
+- Opción de comentarios anónimos
+- Visualización con fecha y hora
+- Asociación a diferentes juegos
 
-### Ejercicio 5: Logout
-- Destrucción de sesiones
-- Redirección a login
-- Enlaces en páginas principales
+### Validaciones
+- Validación JavaScript del lado del cliente
+- Prevención de campos vacíos
+- Validación PHP del lado del servidor
+- Mensajes de error descriptivos
 
-### Ejercicio 6: Validación JavaScript
-- Validación de campos vacíos
-- Alertas informativas
-- Prevención de envío de formularios incompletos
-
-### Ejercicio 7: Animaciones CSS
-- Efectos hover con fade-in
-- Crecimiento suave de elementos
-- Transiciones CSS3
-- Cambios de color dinámicos
-
-### Ejercicio 8: Cambiar Contraseña
-- Verificación de contraseña actual
-- Validación de coincidencia
-- Actualización segura en BD
+### Interfaz de Usuario
+- Diseño responsive y adaptable
+- Animaciones CSS con efectos hover
+- Transiciones suaves
+- Feedback visual claro
+- Navegación dinámica según sesión
 
 ---
 
@@ -191,19 +189,23 @@ php-session-management/
 
 - **Responsive design** - Adaptable a diferentes tamaños de pantalla
 - **Formularios centrados** - Diseño limpio y profesional
-- **Animaciones suaves** - Transiciones CSS en hover
-- **Colores coherentes** - Paleta azul profesional
+- **Animaciones suaves** - Transiciones CSS en hover con fade-in y crecimiento
+- **Colores coherentes** - Paleta azul profesional (#007bff)
 - **Feedback visual** - Mensajes de error y éxito claros
+- **Bordes redondeados** - Estética moderna con `border-radius`
+- **Sombras dinámicas** - Efecto de elevación en elementos interactivos
 
 ---
 
 ## 🔒 Seguridad Implementada
 
-- ✅ Contraseñas cifradas con `password_hash()`
+- ✅ Contraseñas cifradas con `password_hash()` usando `PASSWORD_DEFAULT`
+- ✅ Verificación segura con `password_verify()`
 - ✅ Validación de sesiones en páginas protegidas
-- ✅ Verificación de emails duplicados
-- ✅ Validación JavaScript y PHP
-- ✅ Mensajes de error sin revelar información sensible
+- ✅ Verificación de emails duplicados en el registro
+- ✅ Validación en cliente (JavaScript) y servidor (PHP)
+- ✅ Mensajes de error que no revelan información sensible
+- ✅ Protección contra envío de formularios vacíos
 
 ---
 
@@ -224,25 +226,15 @@ Si usas credenciales diferentes, modifica estos valores en:
 - `comment.php`
 - `change_password.php`
 
----
-
-## 🐛 Solución de Problemas
-
-### Error: "Access denied for user"
-**Solución:** Verifica que los datos de conexión (`localhost`, `root`, `1234`, `mysitedb`) sean correctos.
-
-### Error: "Table doesn't exist"
-**Solución:** Asegúrate de haber importado el archivo `mysitedb.sql` correctamente.
-
-### Página en blanco
-**Solución:** Verifica que Apache y MySQL estén iniciados en XAMPP.
-
-### Las animaciones CSS no funcionan
-**Solución:** Verifica que el archivo `main-estilos.css` esté enlazado correctamente en todos los HTML.
-
+**Parámetros por defecto:**
+- **Host:** `localhost`
+- **Usuario:** `root`
+- **Contraseña:** `1234`
+- **Base de datos:** `mysitedb`
 ---
 
 ## 👤 Autor
 
 **Xián León Romero**  
 - GitHub: [@xianleonromero](https://github.com/xianleonromero)
+- LinkedIn: [Xián León Romero](https://linkedin.com/in/xián-león-romero-7a57b7352)
